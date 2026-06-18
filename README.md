@@ -14,7 +14,6 @@ Faculty of Computers and Information – Fayoum Center - EELU
 |---|---|
 | Shahd Mohamed | Team Leader |
 | Mostafa Elgendy | Member |
-
 | Rawan Yehia | Member |
 | Ahmed Sayed | Member |
 | Rahma Ramadan | Member |
@@ -83,17 +82,18 @@ AVIR is a smart healthcare platform built to support early detection and awarene
 - Swagger (API documentation)
 
 ## 📁 Repository Structure
-
-```
 Avir1/         → ASP.NET Core backend (API, authentication, database, scheduled reminders)
+
 ai-analysis/   → AI model for medical image analysis
+
 ai-chatbot/    → AI chatbot service
-frontend/      → Web frontend (coming soon)
-```
+
+frontend/      → Web frontend 
+## 🎨 Presentation (Canva)
+[View Presentation](https://canva.link/7yku98ubpf9p589)
 
 ## 📌 Summary
 
 AVIR was developed as a graduation project at the Faculty of Computers and Information, Fayoum Center - EELU. The goal is to support early breast cancer detection through accessible AI tools, encourage regular self-examination, and raise awareness through education and community support.
-## 🎨 Presentation (Canva)
-[View Presentation](https://canva.link/7yku98ubpf9p589)
+
 💬 For further assistance or questions, feel free to reach out to the development team.
