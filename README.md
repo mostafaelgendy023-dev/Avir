@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=45&color=00BFFF&center=true&vCenter=true&width=700&height=100&duration=7000&lines=🎗️+AVIR+-+Graduation+Project; We+hope+you+find+our+project+valuable+❤" />
+  <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=45&color=00BFFF&center=true&vCenter=true&width=700&height=100&duration=7000&lines=🎗️+AVIR+-+Graduation+Project;We+hope+you+find+our+project+valuable+❤" />
 </p>
 
 ## 📄 Project Information
