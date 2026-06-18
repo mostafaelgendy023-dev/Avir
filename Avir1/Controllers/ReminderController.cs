@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Avir1.Data;
 using Avir1.Models;
+using Hangfire;
 
 namespace Avir1.Controllers
 {
@@ -10,10 +11,12 @@ namespace Avir1.Controllers
     public class ReminderController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly EmailService _emailService;
 
-        public ReminderController(AppDbContext context)
+        public ReminderController(AppDbContext context, EmailService emailService)
         {
             _context = context;
+            _emailService = emailService;
         }
 
         // GET: api/reminder/user/5
@@ -23,7 +26,6 @@ namespace Avir1.Controllers
             var reminders = await _context.Reminder
                 .Where(r => r.UserID == userId)
                 .ToListAsync();
-
             return Ok(reminders);
         }
 
@@ -31,8 +33,14 @@ namespace Avir1.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateReminder(Reminder reminder)
         {
+            DateTime reminderDate = reminder.PeriodStartDate.AddDays(8);
+            reminder.ReminderDate = reminderDate;
+
             _context.Reminder.Add(reminder);
             await _context.SaveChangesAsync();
+
+            // بعت الإيميل مباشرة بدون Hangfire للتست
+            _emailService.SendReminderEmail(reminder.Email, reminderDate);
 
             return Ok(reminder);
         }
@@ -43,6 +51,9 @@ namespace Avir1.Controllers
         {
             if (id != reminder.Id)
                 return BadRequest();
+
+            DateTime reminderDate = reminder.PeriodStartDate.AddDays(8);
+            reminder.ReminderDate = reminderDate;
 
             _context.Entry(reminder).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -55,13 +66,11 @@ namespace Avir1.Controllers
         public async Task<IActionResult> DeleteReminder(int id)
         {
             var reminder = await _context.Reminder.FindAsync(id);
-
             if (reminder == null)
                 return NotFound();
 
             _context.Reminder.Remove(reminder);
             await _context.SaveChangesAsync();
-
             return Ok();
         }
     }

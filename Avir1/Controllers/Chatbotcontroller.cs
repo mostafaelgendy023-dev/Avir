@@ -45,31 +45,37 @@ namespace Avir1.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMessage(int userId, ChatbotInteraction model)
         {
-            model.UserID = userId;
-            model.Timestamp = DateTime.Now;
-
-            // Auto-generate sessionId if not provided
-            if (string.IsNullOrEmpty(model.SessionId))
-                model.SessionId = Guid.NewGuid().ToString();
-
-            _context.ChatbotInteractions.Add(model);
-            await _context.SaveChangesAsync();
-
-            // Generate bot reply and save it
-            var botReply = GenerateBotReply(model.Message, userId);
-            var botMessage = new ChatbotInteraction
+            try
             {
-                UserID = userId,
-                SessionId = model.SessionId,
-                Role = "bot",
-                Message = botReply,
-                Timestamp = DateTime.Now
-            };
+                model.UserID = userId;
+                model.Timestamp = DateTime.Now;
 
-            _context.ChatbotInteractions.Add(botMessage);
-            await _context.SaveChangesAsync();
+                if (string.IsNullOrEmpty(model.SessionId))
+                    model.SessionId = Guid.NewGuid().ToString();
 
-            return Ok(new { userMessage = model, botMessage });
+                _context.ChatbotInteractions.Add(model);
+                await _context.SaveChangesAsync();
+
+                var botReply = GenerateBotReply(model.Message, userId);
+
+                var botMessage = new ChatbotInteraction
+                {
+                    UserID = userId,
+                    SessionId = model.SessionId,
+                    Role = "bot",
+                    Message = botReply,
+                    Timestamp = DateTime.Now
+                };
+
+                _context.ChatbotInteractions.Add(botMessage);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { userMessage = model, botMessage });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.ToString());
+            }
         }
 
         // DELETE /users/{userId}/chats/{id}

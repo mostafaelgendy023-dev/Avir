@@ -18,7 +18,7 @@ public DbSet<Users> Users { get; set; }
         public DbSet<Upload> Upload { get; set; }
         public DbSet<SymptomLog> SymptomLogs { get; set; }
         public DbSet<SelfExam> SelfExams { get; set; }
-        public DbSet<LabTest> LabTests { get; set; }
+       
         public DbSet<MedicalImage> MedicalImages { get; set; }
         public DbSet<Radiology_Library> Radiology_Libraries { get; set; }
         public DbSet<ResultSummary> ResultSummaries { get; set; }

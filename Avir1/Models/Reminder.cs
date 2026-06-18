@@ -7,19 +7,9 @@ namespace Avir1.Models
     public class Reminder
     {
         public int Id { get; set; }
-
-        [Required]
-        [MaxLength(200)]
-        public string Title { get; set; }
-
-        public string Description { get; set; }
-
-        [Required]
-        public DateTime ReminderDate { get; set; }
-
-        [ForeignKey("User")]
         public int UserID { get; set; }
-
-        public Users User { get; set; }
+        public string Email { get; set; }
+        public DateTime PeriodStartDate { get; set; }
+        public DateTime ReminderDate { get; set; }
     }
 }

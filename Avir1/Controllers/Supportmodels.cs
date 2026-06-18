@@ -67,22 +67,12 @@ namespace Avir1.Models
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
         public int UserID { get; set; }
-
-        [Required]
-        [MaxLength(200)]
-        public string Title { get; set; }
-
-        [Required]
-        public string Content { get; set; }
-
+        public string? Title { get; set; }
+        public string? Content { get; set; }
         public DateTime DatePosted { get; set; } = DateTime.Now;
-
         public int Likes { get; set; } = 0;
-
         [ForeignKey("UserID")]
-        public Users User { get; set; }
+        public Users? User { get; set; }
     }
 }
