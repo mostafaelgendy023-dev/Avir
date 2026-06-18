@@ -94,5 +94,6 @@ frontend/      → Web frontend (coming soon)
 ## 📌 Summary
 
 AVIR was developed as a graduation project at the Faculty of Computers and Information, Fayoum Center - EELU. The goal is to support early breast cancer detection through accessible AI tools, encourage regular self-examination, and raise awareness through education and community support.
-
+## 🎨 Presentation (Canva)
+[View Presentation](https://canva.link/7yku98ubpf9p589)
 💬 For further assistance or questions, feel free to reach out to the development team.
